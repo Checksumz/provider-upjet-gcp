@@ -13,7 +13,8 @@ PROJECT_REPO := github.com/upbound/$(PROJECT_NAME)
 export TERRAFORM_VERSION := 1.5.5
 export TERRAFORM_PROVIDER_VERSION := 5.28.0
 export TERRAFORM_PROVIDER_SOURCE := hashicorp/google
-export TERRAFORM_PROVIDER_REPO ?= https://github.com/hashicorp/terraform-provider-google
+# export TERRAFORM_PROVIDER_REPO ?= https://github.com/hashicorp/terraform-provider-google
+export TERRAFORM_PROVIDER_REPO ?= https://github.com/hashicorp/terraform-provider-google-beta
 export TERRAFORM_DOCS_PATH ?= website/docs/r
 export PROVIDER_NAME
 
@@ -186,7 +187,7 @@ pull-docs:
 	git clone -c advice.detachedHead=false --depth 1 --filter=blob:none --branch "v$(TERRAFORM_PROVIDER_VERSION)" --sparse "$(TERRAFORM_PROVIDER_REPO)" "$(WORK_DIR)/$(notdir $(TERRAFORM_PROVIDER_REPO))";
 	@git -C "$(WORK_DIR)/$(notdir $(TERRAFORM_PROVIDER_REPO))" sparse-checkout set "$(TERRAFORM_DOCS_PATH)"
 	@# workaround for being unable override raw registry data. To be tracked in upjet.
-	@mv .work/terraform-provider-google/website/docs/r/network_management_connectivity_test_resource.html.markdown .work/terraform-provider-google/website/docs/r/network_management_connectivity_test.html.markdown
+	@mv .work/terraform-provider-google-beta/website/docs/r/network_management_connectivity_test_resource.html.markdown .work/terraform-provider-google-beta/website/docs/r/network_management_connectivity_test.html.markdown
 
 generate.init: $(TERRAFORM_PROVIDER_SCHEMA) pull-docs
 

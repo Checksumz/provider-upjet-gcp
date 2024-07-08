@@ -471,6 +471,17 @@ var terraformPluginSDKExternalNameConfigs = map[string]config.ExternalName{
 	// Imported by using the following projects/{{project}}/locations/{{location}}/instances/{{instance}}/snapshots/{{name}}
 	"google_filestore_snapshot": config.TemplatedStringAsIdentifier("name", "projects/{{ .setup.configuration.project }}/locations/{{ .parameters.location }}/instances/{{ .parameters.instance }}/snapshots/{{ .external_name }}"),
 
+	// firebase
+	//
+	// Imported by using the following format: {{project}} projects/{{project}}/androidApps/{{app_id}}
+	"google_firebase_android_app": config.TemplatedStringAsIdentifier("name", "{{ .setup.configuration.project }} projects/{{ .setup.configuration.project }}/androidApps/{{ .parameters.app_id }}"),
+	// Imported by using the following {{project}} projects/{{project}}/iosApps/{{app_id}}
+	"google_firebase_apple_app": config.TemplatedStringAsIdentifier("name", "{{ .setup.configuration.project }} projects/{{ .setup.configuration.project }}/iosApps/{{ .parameters.app_id }}"),
+	// Imported by using the following projects/{{project}}
+	"google_firebase_project": config.TemplatedStringAsIdentifier("name", "projects/{{ .setup.configuration.project }}"),
+	// Imported by using the following {{project}} projects/{{project}}/webApps/{{app_id}}
+	"google_firebase_web_app": config.TemplatedStringAsIdentifier("name", "{{ .setup.configuration.project }} projects/{{ .setup.configuration.project }}/webApps/{{ .parameters.app_id  }}"),
+
 	// firebaserules
 	//
 	// Imported by using the following format: projects/{{project}}/releases/{{name}}
